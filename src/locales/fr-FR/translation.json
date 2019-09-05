@@ -1,0 +1,25 @@
+{
+    "navbar":{
+        "home":"Accueil",
+        "rest_documentation":"Rest Documentation",
+        "news":"News",
+        "contact":"Contact"
+    },
+    "log_in":"Log in",
+    "atonline_main_title":"AtOnline.com",
+    "copyright":"©2019 @Lab. Tous droits réservés.",
+    "footer_privacy_policies":"Privacy Policies",
+    "footer_terms_conditions":"Terms & Conditions",
+    "footer_contact_us":"Contact Us",
+    "home":{
+        "feature_simple":"Simple",
+        "feature_simple_p":"Our products can be used without formation",
+        "feature_scalable":"Scalable",
+        "feature_scalable_p":"We are able to adapt to your needs",
+        "feature_serverless":"Serverless",
+        "feature_serverless_p":"Increasing agility and innovation.",
+        "feature_secure":"Secure",
+        "feature_secure_p":"The Service is operated by security professionals"
+    }
+
+}

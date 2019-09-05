@@ -1,0 +1,6 @@
+.buttons a.navbar-item:hover{background-color: unset; color: unset;}
+.dropdown-menu{min-width: 100%}
+.dropdown-item{cursor: pointer;}
+.dropdown-item:hover {background: whitesmoke;}
+.navbar-item img {max-height: 1.75rem;width: 20px;height: 21px;float: left;left: -8px;position: relative;}
+.flags-lst button{width:130px}

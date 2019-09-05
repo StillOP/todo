@@ -1,0 +1,31 @@
+build site:
+  image: node:10
+  stage: build
+  before_script:
+    - apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -y install zip
+  script:
+    - yarn
+    - yarn build
+    - mv build dist
+    - zip -9r final.zip dist etc
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - final.zip
+
+deploy:
+  image: node:10
+  stage: deploy
+  variables:
+    API_PREFIX: "https://ws.atonline.com/_special/rest/"
+    CT_HEADER: "Content-Type: application/zip"
+  before_script:
+    - apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -y install jq curl
+  script:
+    - if [ x"$DEPLOY_SERVER" = x ]; then echo "Please configure DEPLOY_SERVER and DEPLOY_TOKEN in gitlab"; exit 1; fi
+    - if [ x"$DEPLOY_TOKEN" = x ]; then echo "Please configure DEPLOY_SERVER and DEPLOY_TOKEN in gitlab"; exit 1; fi
+    - API_INFO=`curl -s --data-urlencode "server=${DEPLOY_SERVER}" --data-urlencode "token=${DEPLOY_TOKEN}" --data-urlencode "branch=${CI_COMMIT_REF_SLUG}" --data-urlencode "commit=${CI_COMMIT_SHA}" --data-urlencode "login=${GITLAB_USER_LOGIN}" --data-urlencode "email=${GITLAB_USER_EMAIL}" --data-urlencode "user_id=${GITLAB_USER_ID}" --data-urlencode "user_name=${GITLAB_USER_NAME}" --data-urlencode "project=${CI_PROJECT_URL}" "${API_PREFIX}Server/Version:upload"`
+    - API_PUT=`echo "$API_INFO" | jq -r .data.PUT -`
+    - API_COMP=`echo "$API_INFO" | jq -r .data.Complete -`
+    - curl "-#" -T "final.zip" -H "$CT_HEADER" "$API_PUT" >/dev/null # upload file
+    - curl -s "${API_PREFIX}${API_COMP}"; echo # notify upload complete
