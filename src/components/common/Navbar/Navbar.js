@@ -45,7 +45,7 @@ class Navbar extends Component {
                 <nav className="navbar">
                     <div className="container">
                       <div className="navbar-brand">
-                          <Link to={`/${i18n.language}/`} className="navbar-item" href="/#"> {t('navbar.home')}</Link>
+                          <Link to={`/${i18n.language}/`} className="navbar-item app-link" href="/#"> {t('navbar.home')}</Link>
                           <a className="navbar-burger" role="button" aria-label="menu" aria-expanded="false"  data-target="navMenu" href="/#">
                           <span aria-hidden="true"></span>
                           <span aria-hidden="true"></span>
@@ -54,9 +54,9 @@ class Navbar extends Component {
                       </div>
                       <div id="navMenu" className="navbar-menu">
                           <div className="navbar-start">
-                              <Link to={`/${i18n.language}/about`} className="navbar-item">{t("navbar.rest_documentation")}</Link>
-                              <Link to={`/${i18n.language}/topics`} className="navbar-item">{t("navbar.news")}</Link>
-                              <Link to={`/${i18n.language}/contact`} className="navbar-item">{t("navbar.contact")}</Link>
+                              <Link to={`/${i18n.language}/about`} className="navbar-item app-link">{t("navbar.rest_documentation")}</Link>
+                              <Link to={`/${i18n.language}/topics`} className="navbar-item app-link">{t("navbar.news")}</Link>
+                              <Link to={`/${i18n.language}/contact`} className="navbar-item app-link">{t("navbar.contact")}</Link>
                           {/* 
                               <div className="navbar-item has-dropdown is-hoverable"><a className="navbar-link" href="/#">ICO</a>
                                   <div className="navbar-dropdown">
